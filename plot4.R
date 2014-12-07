@@ -29,21 +29,25 @@ filtered$newDate <- strptime(filtered$newDate, format="%d/%m/%Y %H:%M:%S") #conv
 
 par(mfrow = c(2,2))
 
-# Top left plot
-plot(filtered$newDate, filtered$Global_active_power, type="l", ylab="Global Active Power", xlab="")
+# First draw on the screen device
 
-# Top right plot
-plot(filtered$newDate, filtered$Voltage, xlab="datetime", ylab="", type="l")
+  # Top left plot
+  plot(filtered$newDate, filtered$Global_active_power, type="l", ylab="Global Active Power", xlab="")
+  
+  # Top right plot
+  plot(filtered$newDate, filtered$Voltage, xlab="datetime", ylab="", type="l")
+  
+  # Bottom left plot
+  plot(filtered$newDate, filtered$Sub_metering_1, type="l", ylab="Energy sub metering", xlab="")
+  points(filtered$newDate, filtered$Sub_metering_2, type="l", col="red")
+  points(filtered$newDate, filtered$Sub_metering_3, type="l", col="blue")
+  legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", col=c("black","red", "blue"), lty=c(1,1,1))
+  
+  # Bottom right plot
+  plot(filtered$newDate, filtered$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
 
-# Bottom left plot
-plot(filtered$newDate, filtered$Sub_metering_1, type="l", ylab="Energy sub metering", xlab="")
-points(filtered$newDate, filtered$Sub_metering_2, type="l", col="red")
-points(filtered$newDate, filtered$Sub_metering_3, type="l", col="blue")
-legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", col=c("black","red", "blue"), lty=c(1,1,1))
 
-# Bottom right plot
-plot(filtered$newDate, filtered$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
-
+# Now draw the same plots into a png file
 png("plot4.png")
 
 par(mfrow = c(2,2))
@@ -60,5 +64,6 @@ points(filtered$newDate, filtered$Sub_metering_3, type="l", col="blue")
 legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty="n", col=c("black","red", "blue"), lty=c(1,1,1))
 
 # Bottom right plot
-plot(filtered$newDate, filtered$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
+plot(filtered$newDate, filtered$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power", lwd=1)
+
 dev.off()
