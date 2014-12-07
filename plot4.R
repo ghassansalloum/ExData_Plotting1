@@ -1,9 +1,17 @@
-library(dplyr)
+library(dplyr) # install.packages("dplyr") if you don't have this library on your system
 
 # Replace the following with the correct folder on your machine
-setwd("C:\\Users\\G\\SkyDrive\\Documents\\Coursera\\Exploratory analysis")
+#setwd("C:\\Users\\G\\SkyDrive\\Documents\\Coursera\\Exploratory analysis")
+
+url="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+urlfile = "exdata-data-household_power_consumption.zip"
 file="household_power_consumption.txt"
 
+# download the file if you don't already have it in your working directory
+if (!file.exists(urlfile))
+  download.file(url, destfile=urlfile)
+
+# unzip the file if you haven't already done so in your working directory
 if (!file.exists(file)) {
   unzip("exdata-data-household_power_consumption.zip")
 }
