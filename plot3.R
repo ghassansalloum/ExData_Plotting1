@@ -1,4 +1,5 @@
 library(dplyr) # install.packages("dplyr") if you don't have this library on your system
+library(data.table) # assumes library "data.table" already installed. Used to fast-read the data file.
 
 # Replace the following with the correct folder on your machine
 #setwd("C:\\Users\\G\\SkyDrive\\Documents\\Coursera\\Exploratory analysis")
@@ -21,7 +22,7 @@ if (!file.exists(file)) {
 # if the variable already exists, simply read it
 # if the variable doesn't exist, load the data from the file on disk
 if (!exists("mydata")) {
-  mydata <- read.table(file, sep=";", na.string="?", header=TRUE)
+  mydata <- fread(file, sep=";", na.strings="?", header=TRUE)
 }
 
 x <- tbl_df(mydata)
